@@ -38,6 +38,7 @@ public class PrincipalController {
     }
     
     public void agregarClockSecundario(PanelClock comp){
+        comp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         ventanaPrincipal.panelCenter.add(comp);
     }
 
