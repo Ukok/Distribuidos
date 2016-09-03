@@ -25,9 +25,10 @@ public class ClockController extends Thread {
     public void run() {
         while (true) {
             try {
+                // sleep(1);
+                sleep(1000);
                 clickClack();
                 update_lblClock();
-                sleep(1000);
             } catch (InterruptedException ex) {
                 System.err.println("Error: sleep");
             }
@@ -35,21 +36,18 @@ public class ClockController extends Thread {
     }
 
     public void clickClack() {
-        int ss, mm, hh;
-        ss = reloj.get_ss();
-        mm = reloj.get_mm();
-        hh = reloj.get_hh();
-
-        if (ss++ == 59) {
-            ss = 0;
-            if (mm++ == 59) {
-                mm = 0;
-                if (hh++ == 23) {
-                    hh = 0;
+        //    if (reloj.ms_sum(1) == 1000) {
+        //        reloj.set_ms(0);
+        if (reloj.ss_sum(1) == 60) {
+            reloj.set_ss(0);
+            if (reloj.mm_sum(1) == 60) {
+                reloj.set_mm(0);
+                if (reloj.hh_sum(1) == 24) {
+                    reloj.set_hh(0);
                 }
             }
         }
-        reloj.updateClock(hh, mm, ss);
+        //  }
     }
 
     public void btnModificarActionPerformed(ActionEvent e) {
