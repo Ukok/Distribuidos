@@ -32,7 +32,7 @@ public class AcercaDe extends javax.swing.JFrame {
         setType(java.awt.Window.Type.UTILITY);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("<html> <center> Instituto Politécnico Nacional<br> Escuela Superior de Cómputo<br> \n\n<br> Sistemas distribuidos<br>\n<br> Equipo 5 <br>\n<br> Ejercicio: Aplicación que muestra cinco relojes digitales, capaz de sincronizarse.<br> </center> </html>");
+        jLabel1.setText("<html> <center> Instituto Politécnico Nacional<br> Escuela Superior de Cómputo<br>   <br> Sistemas distribuidos<br> <br> Equipo 5 <br> <br> Ejercicio: Aplicación que muestra cinco relojes digitales<br> </center> </html>");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

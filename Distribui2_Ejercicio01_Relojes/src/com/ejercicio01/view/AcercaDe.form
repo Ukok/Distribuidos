@@ -55,7 +55,7 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="&lt;html&gt; &lt;center&gt; Instituto Polit&#xe9;cnico Nacional&lt;br&gt; Escuela Superior de C&#xf3;mputo&lt;br&gt; &#xa;&#xa;&lt;br&gt; Sistemas distribuidos&lt;br&gt;&#xa;&lt;br&gt; Equipo 5 &lt;br&gt;&#xa;&lt;br&gt; Ejercicio: Aplicaci&#xf3;n que muestra cinco relojes digitales, capaz de sincronizarse.&lt;br&gt; &lt;/center&gt; &lt;/html&gt;"/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt; &lt;center&gt; Instituto Polit&#xe9;cnico Nacional&lt;br&gt; Escuela Superior de C&#xf3;mputo&lt;br&gt;   &lt;br&gt; Sistemas distribuidos&lt;br&gt; &lt;br&gt; Equipo 5 &lt;br&gt; &lt;br&gt; Ejercicio: Aplicaci&#xf3;n que muestra cinco relojes digitales&lt;br&gt; &lt;/center&gt; &lt;/html&gt;"/>
       </Properties>
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;center&gt;&#xa;Instituto Polit&#xe9;cnico Nacional&lt;br&gt;&#xa;Escuela Superior de C&#xf3;mputo&lt;br&gt;&#xa;&lt;br&gt;&#xa;Sistemas distribuidos&lt;br&gt;&lt;br&gt;&#xa;Ejercicio: Aplicacion Cliente-Servidor que permite&lt;br&gt;&#xa;la conexion a gestores de BD y visualizar la informaci&#xf3;n&lt;br&gt;&#xa;de cualquier base de datos existente en el gestor.&lt;br&gt;&#xa;&lt;/center&gt;&#xa;&lt;/html&gt;"/>

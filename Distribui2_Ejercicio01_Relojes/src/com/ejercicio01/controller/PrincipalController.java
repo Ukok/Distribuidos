@@ -6,7 +6,7 @@ import com.ejercicio01.view.panel.PanelClock;
 import java.awt.event.ActionEvent;
 
 /**
- *
+ * Controlador de la ventana principal y sus componentes.
  * @author mario
  */
 public class PrincipalController {
