@@ -2,8 +2,6 @@ package com.ejercicio01;
 
 import com.ejercicio01.controller.ClockController;
 import com.ejercicio01.controller.PrincipalController;
-import com.ejercicio01.model.Clock;
-
 /**
  *
  * @author mario

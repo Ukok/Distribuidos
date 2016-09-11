@@ -33,7 +33,7 @@ public class PanelClock extends javax.swing.JPanel {
         btnModificar = new javax.swing.JButton();
         panelNorte = new javax.swing.JPanel();
         btnReset = new javax.swing.JButton();
-        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(20, 10), new java.awt.Dimension(50, 10), new java.awt.Dimension(20, 32767));
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(20, 10), new java.awt.Dimension(50, 10), new java.awt.Dimension(2000, 32767));
         btnSistema = new javax.swing.JButton();
 
         setFocusCycleRoot(true);
