@@ -32,6 +32,12 @@ public class NodoController implements Constantes {
    private Nodo master;// ??
    private long id;    // Id del hilo BerkeleyThread
 
+   /**
+    * Constructor.
+    *
+    * @param reloj Clock.
+    * @param puerto Entero para especificar el puerto del DatagramSocket.
+    */
    public NodoController(Clock reloj, int puerto) {
 
       try {
@@ -48,7 +54,7 @@ public class NodoController implements Constantes {
          gpo = InetAddress.getByName(DIRECCION_DE_GRUPO);
       } catch (UnknownHostException u) {
          System.err.println("Direccion no valida");
-      }//catch
+      }
       try {
          mcs.joinGroup(gpo);
          System.out.println("Unido a grupo:" + gpo);
@@ -62,36 +68,22 @@ public class NodoController implements Constantes {
 
    }
 
-   public Clock estimarDesfase(Clock reloj) {
-      int hh, mm, ss, ms = 0;
-
-      ms = this.reloj.get_ms() - reloj.get_ms();
-      ss = this.reloj.get_ss() - reloj.get_ss();
-      mm = this.reloj.get_mm() - reloj.get_mm();
-      hh = this.reloj.get_hh() - reloj.get_hh();
-
-      if (ms < 0) {
-         ss -= 1;
-         ms += 1000;
-      }
-      if (ss < 0) {
-         mm -= 1;
-         ss += 60;
-      }
-      if (mm < 0) {
-         hh -= 1;
-         mm += 60;
-      }
-      if (hh < 0) {
-         hh += 24;
-      }
-      return new Clock(hh, mm, ss, ms);
-   }
-
+   /**
+    * Establece el id de BerkeleyThread
+    *
+    * @param id de BerkeleyThread.
+    */
    void setId(long id) {
       this.id = id;
    }
 
+   /**
+    * Recibe DatagramPacket del grupo con MulticastSocket.
+    *
+    * @return DatagramPacket recibido.
+    * @throws SocketTimeoutException Cuando el socket tiene un timeout definido
+    * y este espira.
+    */
    public synchronized DatagramPacket recibirGrupo() throws SocketTimeoutException {
       try {
          DatagramPacket p = new DatagramPacket(new byte[200], 200);
@@ -104,6 +96,11 @@ public class NodoController implements Constantes {
 
    }
 
+   /**
+    * Envia un DatagramPacket al grupo Multicast.
+    *
+    * @param p DatagramPacket por salir.
+    */
    public synchronized void enviarGrupo(DatagramPacket p) {
       try {
          p.setAddress(gpo);
@@ -114,17 +111,26 @@ public class NodoController implements Constantes {
       }
    }
 
+   /**
+    * Recibe un DatagramPacket por el DatagramSocket.
+    *
+    * @return DatagramPacket Recibido.
+    * @throws SocketTimeoutException Cuando el socket tiene un timeout definido
+    * y este espira.
+    * @throws IOException Cuando existe un problema de entrada o salida con el
+    * socket.
+    */
    public synchronized DatagramPacket recibir() throws SocketTimeoutException, IOException {
-      //try {
       DatagramPacket p = new DatagramPacket(new byte[200], 200);
       ds.receive(p);
       return p;
-      /*} catch (IOException ex) {
-         System.err.println("IOException en recibir");
-         return null;
-      }*/
    }
 
+   /**
+    * Envia un DatagramPacket por el DatagramSocket.
+    *
+    * @param p DatagramPacket.
+    */
    public synchronized void enviar(DatagramPacket p) {
       try {
          ds.send(p);
@@ -133,44 +139,82 @@ public class NodoController implements Constantes {
       }
    }
 
+   /**
+    * Regresa true si el nodo es maestro, false si es esclavo.
+    *
+    * @return true si el nodo es maestro, false si es esclavo.
+    */
    public boolean isMaster() {
       return masterFlag;
    }
 
+   /**
+    * Saca el MulticastSocket del grupo que por defecto se une y pone la bandera
+    * que indica que el nodo es Maestro.
+    */
    public void setMaster() {
       this.masterFlag = MAESTRO;
       try {
          mcs.leaveGroup(gpo);
-         System.out.println("Saliendo de grupo OK");
+         //System.out.println("Saliendo de grupo OK");
       } catch (IOException ex) {
          Logger.getLogger(NodoController.class.getName()).log(Level.SEVERE, null, ex);
       }
    }
 
+   /**
+    * Establece la bandera que indica si el nodo es Maestro = true o
+    * Esclavo=false.
+    *
+    * @param masterFlag true si es nodo master, false si es esclavo
+    */
    public void setMasterFlag(boolean masterFlag) {
       this.masterFlag = masterFlag;
    }
 
+   /**
+    * Regresa el valor de reloj en milisegundos.
+    *
+    * @return valor de reloj en milisegundos.
+    */
    public int getMSClockValue() {
       return reloj.getMilisecondsValue();
    }
 
-   public double getSSClockValue() {
-      return reloj.getSecondsValue();
-   }
-
+   /**
+    * Establece valor del reloj con milisegundos.
+    *
+    * @param ms Valor de reloj en milisegundos.
+    */
    public void setMSClockValue(int ms) {
       reloj.setWithMilisecondsValue(ms);
    }
 
+   /**
+    * Regresa el atributo lista de nodos.
+    *
+    * @return ArrayList Lista de nodos conocidos.
+    */
    public ArrayList<Nodo> getNodos() {
       return nodos;
    }
 
+   /**
+    * Establece la lista de nodos conocidos.
+    *
+    * @param nodos ArrayList Lista de nodos conocidos.
+    */
    public void setNodos(ArrayList<Nodo> nodos) {
       this.nodos = nodos;
    }
 
+   /**
+    * Busca en la lista de nodos, si ya estiste cambia su marca de tiempo, sino
+    * agrega el nodo a la lista
+    *
+    * @param p DatagramPacket con la informacion de dirección y puerto.
+    * @param ms Marca de tiempo en milisegundos.
+    */
    void agregarNodo(DatagramPacket p, int ms) {
       //Buscar en la lista de nodos 
       // si ya existe cambia su timestamp
@@ -185,9 +229,13 @@ public class NodoController implements Constantes {
          aux.setTimestamp(ms);
          nodos.add(aux);
       }
-      System.out.println(nodos);
    }
 
+   /**
+    * Establece un tiempo de espera del DatagramSocket
+    *
+    * @param ms tiempo de espera en milisegundos.
+    */
    public void setSoTimeout(int ms) {
       try {
          ds.setSoTimeout(ms);

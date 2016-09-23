@@ -1,6 +1,5 @@
 package com.ejercicio02.model;
 
-import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -21,7 +20,7 @@ public class Mensaje implements Serializable {
     /**
      * Constructor
      *
-     * @param codigoOperacion
+     * @param codigoOperacion Código de operación del mensaje.
      */
     public Mensaje(int codigoOperacion) {
         this.codigoOperacion = codigoOperacion;
@@ -39,7 +38,7 @@ public class Mensaje implements Serializable {
     /**
      * Establece un código de operacion.
      *
-     * @param codigoOperacion
+     * @param codigoOperacion codigo de operacion de mensaje.
      */
     public void setCodigoOperacion(int codigoOperacion) {
         this.codigoOperacion = codigoOperacion;
@@ -67,8 +66,8 @@ public class Mensaje implements Serializable {
     /**
      * Intenta convertir un arreglo de bytes en un Mensaje.
      *
-     * @param buf
-     * @return Mensaje
+     * @param buf Arreglo de bytes.
+     * @return Mensaje obtenido por el arreglo de bytes.
      */
     public static Mensaje fromByteArray(byte[] buf) {
         try {

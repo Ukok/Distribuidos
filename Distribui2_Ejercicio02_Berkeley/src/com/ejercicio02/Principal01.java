@@ -46,12 +46,15 @@ public class Principal01 {
 
          NodoController nc3 = new NodoController(cc3.getReloj(), 5557);
          BerkeleyThread bt3 = new BerkeleyThread(nc3);
+         bt3.setName("Slave2");
 
          NodoController nc4 = new NodoController(cc4.getReloj(), 5558);
          BerkeleyThread bt4 = new BerkeleyThread(nc4);
+         bt4.setName("Slave3");
 
          NodoController nc5 = new NodoController(cc5.getReloj(), 5559);
          BerkeleyThread bt5 = new BerkeleyThread(nc5);
+         bt5.setName("Slave4");
 
          bt1.start();
          bt2.start();

@@ -11,16 +11,19 @@ public interface Constantes {
    public static final boolean MAESTRO = true;
    public static final boolean ESCLAVO = false;
 
+//Tipos de operacion de mensajes
    public static final int SOLICITUD_DESFASE = 10;
    public static final int DESFASE = 11;
    public static final int AJUSTE = 12;
-
-   public static int RANGO_MAX = 5000;
-   public static int RANGO_MIN = -5000;
-
-   public static int TIEMPO_ESPERA = 2000;// Tiempo espera para recibir desfases de esclavos.
+// Rangos para desechar desfases fuera de lugar.
+   public static int RANGO_MAX = 300000;
+   public static int RANGO_MIN = -300000;
+// Tiempo espera para recibir desfases de esclavos.
+   public static int TIEMPO_ESPERA = 2000;
+//Timeout de socket
    public static int TIEMPO_ESPERA_SOCKET = 500;
-
-   public static int TIEMPO_ESPERA_SINCRONIZACION = 10000;//Está en funcion del total de nodos por sincronizar al parecer.
+//Tiempo espera para volver a ejecutar Berkeley. Al parecer está en funcion del 
+//total de nodos por sincronizar .
+   public static int TIEMPO_ESPERA_SINCRONIZACION = 10000;
 
 }
