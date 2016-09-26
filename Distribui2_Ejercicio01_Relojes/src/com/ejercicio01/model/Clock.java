@@ -11,7 +11,8 @@ import java.util.Date;
 public class Clock implements Serializable {
 
     private int _hh, _mm, _ss, _ms;
-
+    private int ciclo;
+    
     public Clock() {
         _hh = _mm = _ss = _ms = 0;
     }
@@ -206,5 +207,15 @@ public class Clock implements Serializable {
         secondsValue *= 1000;
         setWithMilisecondsValue((int) secondsValue);
     }
+
+   public int getCiclo() {
+      return ciclo;
+   }
+
+   public void setCiclo(int ciclo) {
+      this.ciclo = ciclo;
+   }
+    
+    
 
 }

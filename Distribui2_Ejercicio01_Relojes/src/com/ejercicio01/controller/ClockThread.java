@@ -65,7 +65,7 @@ public class ClockThread extends Thread {
         while (true) {
             try {
                 //sleep(1);
-                sleep(10);
+                sleep(reloj.getCiclo());
                 reloj.clickClack();
                 label.setText(reloj.getStringValue());
             } catch (InterruptedException ex) {
