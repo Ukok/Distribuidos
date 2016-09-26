@@ -211,7 +211,11 @@ public class BerkeleyThread extends Thread {
     * @param ms Milisegundos de ajuste.
     */
    public void ajustar_clock(int ms) {
-      nodo.setMSClockValue(nodo.getMSClockValue() + ms);
+      if (ms > 0) {
+         nodo.setMSClockValue(nodo.getMSClockValue() + ms);
+      } else {
+         nodo.setClockPulseValue(ms);
+      }
    }
 
    /**

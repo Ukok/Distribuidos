@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>392</x>
+      <y>231</y>
+      <w>245</w>
+      <h>315</h>
+    </coordinates>
+    <panel_attributes>com.ejercicio03.controller::NodoController
+--
+-mcs: MulticastSocket
+-ds: DatagramSocket
+-gpo: InetAddress
+-masterFlag: boolean
+-reloj: Clock
+-nodos: ArrayList&lt;Nodo&gt;
+-master: Nodo
+-id: long
+--
++NodoController(Clock reloj, int puerto): ctor
+~setId(long id): void
++recibirGrupo(): DatagramPacket
++enviarGrupo(DatagramPacket p): void
++recibir(): DatagramPacket
++enviar(DatagramPacket p): void
++isMaster(): boolean
++setMaster(): void
++setMasterFlag(boolean masterFlag): void
++getMSClockValue(): int
++setMSClockValue(int ms): void
++getNodos(): ArrayList&lt;Nodo&gt;
++setNodos(ArrayList&lt;Nodo&gt; nodos): void
+~agregarNodo(DatagramPacket p, int ms): void
++setSoTimeout(int ms): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>63</x>
+      <y>7</y>
+      <w>273</w>
+      <h>196</h>
+    </coordinates>
+    <panel_attributes>com.practica03.controller::BerkeleyThread
+--
+-nodo: NodoController
+-sumatoriaDeRelojes: int
+-relojesSumados: int
+-promedio: double
+-tiempo1, tiempo2: int
+--
++BerkeleyThread(NodoController nodo): ctor
++run(): void
+-master(): void
+-slave(): void
+-solicitudDesfase(): DatagramPacket
+-recibirDesfases(): void
++estaEnRango(int milisegundos): boolean
+-recibirMensajes(): void
++ajustar_clock(int ms): void
+-enviarAjustes(): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>651</x>
+      <y>7</y>
+      <w>266</w>
+      <h>196</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+com.practica03.model::Constantes
+--
++PUERTO_MULTICAST = 2222: int
++DIRECCION_DE_GRUPO = "228.1.1.1": String
++MAESTRO = true: boolean
++ESCLAVO = false: boolean
++SOLICITUD_DESFASE = 10: int
++DESFASE = 11: int
++AJUSTE = 12: int
++RANGO_MAX = 300000: int
++RANGO_MIN = -300000: int
++TIEMPO_ESPERA = 2000: int
++TIEMPO_ESPERA_SOCKET = 500: int
++TIEMPO_ESPERA_SINCRONIZACION = 10000: int
+--
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>392</x>
+      <y>7</y>
+      <w>245</w>
+      <h>182</h>
+    </coordinates>
+    <panel_attributes>com.practica03.model::Nodo
+--
+-address: InetAddress
+-port: int
+-timestamp: int
+--
++Nodo(InetAddress dir, int port): ctor
++getAddress(): InetAddress
++setAddress(InetAddress address): void
++getPort(): int
++setPort(int port): void
++getTimestamp(): int
++setTimestamp(int timestamp): void
++toString(): String
++equals(Object obj): boolean
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>651</x>
+      <y>245</y>
+      <w>266</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>com.practica03.model::Mensaje
+--
+-codigoOperacion: int
+--
++Mensaje(int codigoOperacion): ctor
++getCodigoOperacion(): int
++setCodigoOperacion(int codigoOperacion): void
++toByteArrray(): byte[]
++fromByteArray(byte[] buf): Mensaje
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>651</x>
+      <y>434</y>
+      <w>266</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>com.practica03.model::MensajeBerkeley
+--
+-milisegundos: int
+--
++MensajeBerkeley(int codigoOperacion): ctor
++MensajeBerkeley(int ms, int codigoOperacion): ctor
++getMilisegundos(): int
++setMilisegundos(int milisegundos): void
++fromByteArray(byte[] buf): MensajeBerkeley
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>791</x>
+      <y>350</y>
+      <w>21</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>182</y>
+      <w>21</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-&gt;</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>329</x>
+      <y>98</y>
+      <w>77</w>
+      <h>147</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>63</x>
+      <y>217</y>
+      <w>273</w>
+      <h>329</h>
+    </coordinates>
+    <panel_attributes>com.practica01.model::Clock
+--
+-_hh, _mm, _ss, _ms: int
+--
++Clock(): ctor
++Clock(int _hh, int _mm, int _ss, int _ms): ctor
++get_hh(): int
++set_hh(int _hh): void
++get_mm(): int
++set_mm(int _mm): void
++get_ss(): int
++set_ss(int _ss): void
++get_ms(): int
++set_ms(int _ms): void
++resetClock(): void
++updateClock(int _hh, int _mm, int _ss): void
++updateClock(int _hh, int _mm, int _ss, int _ms): void
++systemClock(): void
++getStringValue(): String
++toString(): String
++ms_sum(int i): int
++ss_sum(int i): int
++mm_sum(int i): int
++hh_sum(int i): int
++clickClack(): void
++getMilisecondsValue(): int
++getSecondsValue(): double
++setWithMilisecondsValue(int milisecondsValue): void
++setWithSecondsValue(double secondsValue): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>329</x>
+      <y>294</y>
+      <w>77</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>

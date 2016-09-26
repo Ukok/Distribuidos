@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLSequenceAllInOne</id>
+    <coordinates>
+      <x>0</x>
+      <y>0</y>
+      <w>1010</w>
+      <h>710</h>
+    </coordinates>
+    <panel_attributes>obj=NodoController A~a
+obj=NodoController B~b
+obj=NodoController C~c
+obj=NodoController D~d
+obj=NodoController E~e
+obj=Grupo~g
+tick=1
+on=a; on=b; on=c;on=d;on=e;
+a-&gt;g +:Mensaje 1
+tick=
+g-&gt;b +:Mensaje 1;g-&gt;c +:Mensaje 1;g-&gt;d +:Mensaje 1;g-&gt;e +:Mensaje 1;
+tick=2
+b-&gt;a +:Mensaje 2.1;c-&gt;a +++:Mensaje 2.2;d-&gt;a ++++:Mensaje 2.3;e-&gt;a ++:Mensaje 2.4
+tick=5
+a-&gt;b+:Mensaje 3.1
+a-&gt;c+:Mensaje 3.2
+a-&gt;d+:Mensaje 3.3
+a-&gt;e+:Mensaje 3.4
+tick=2
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
