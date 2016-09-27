@@ -20,14 +20,14 @@ import java.util.logging.Logger;
  * @author mario
  */
 public class NodoController implements Constantes {
-   
+
    private MulticastSocket mcs;
    private DatagramSocket ds;
-   
+
    private InetAddress gpo;
    private boolean masterFlag;
    private Clock reloj;
-   
+
    private ArrayList<Nodo> nodos;
    private Nodo master;// ??
    private long id;    // Id del hilo BerkeleyThread
@@ -39,7 +39,7 @@ public class NodoController implements Constantes {
     * @param puerto Entero para especificar el puerto del DatagramSocket.
     */
    public NodoController(Clock reloj, int puerto) {
-      
+
       try {
          mcs = new MulticastSocket(PUERTO_MULTICAST);
       } catch (IOException ex) {
@@ -61,11 +61,11 @@ public class NodoController implements Constantes {
       } catch (IOException ex) {
          Logger.getLogger(NodoController.class.getName()).log(Level.SEVERE, null, ex);
       }
-      
+
       masterFlag = ESCLAVO;
       this.reloj = reloj;
       nodos = new ArrayList<>();
-      
+
    }
 
    /**
@@ -93,7 +93,7 @@ public class NodoController implements Constantes {
          Logger.getLogger(NodoController.class.getName()).log(Level.SEVERE, null, ex);
          return null;
       }
-      
+
    }
 
    /**
@@ -244,16 +244,12 @@ public class NodoController implements Constantes {
          Logger.getLogger(NodoController.class.getName()).log(Level.SEVERE, null, ex);
       }
    }
-   
+
    void setClockPulseValue(int ms) {
+      //ms es negativo
       //int aux = ms / (Constantes.TIEMPO_ESPERA_SINCRONIZACION / 1000);
-      int aux = ms / 10;
-      
-      if (aux > 1) {
-         reloj.setCiclo(aux);
-      } else {
-         reloj.setCiclo(10);
-      }
+      double ciclo = 10.0 + (((double) -ms) * Constantes.TIEMPO_DESFASE_MAXIMO) / Constantes.DESFASE_MAXIMO;
+      reloj.setCiclo(ciclo);
    }
-   
+
 }

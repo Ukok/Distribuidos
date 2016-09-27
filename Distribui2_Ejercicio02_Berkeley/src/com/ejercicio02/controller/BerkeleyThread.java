@@ -195,7 +195,8 @@ public class BerkeleyThread extends Thread {
                   desfaseEnviado = true;
                   break;
                case Constantes.AJUSTE: // Esclavo recibe de Master.
-                  System.out.println("[" + this.getName() + "] Recibido AJUSTE  de" + p.getAddress() + ":" + p.getPort());
+                  System.out.println("[" + this.getName() + "] Recibido AJUSTE  de" + p.getAddress() + ":" + p.getPort()
+                          + mb.getMilisegundos());
                   ajustar_clock(mb.getMilisegundos());
                   desfaseEnviado = false;
                   break;
@@ -211,7 +212,7 @@ public class BerkeleyThread extends Thread {
     * @param ms Milisegundos de ajuste.
     */
    public void ajustar_clock(int ms) {
-      if (ms > 0) {
+      if (ms >= 0) {
          nodo.setMSClockValue(nodo.getMSClockValue() + ms);
       } else {
          nodo.setClockPulseValue(ms);
@@ -226,7 +227,7 @@ public class BerkeleyThread extends Thread {
       for (Iterator<Nodo> iterator = nodos.iterator(); iterator.hasNext();) {
          Nodo next = iterator.next();
          MensajeBerkeley mb
-                 = new MensajeBerkeley((int) ((next.getTimestamp() * -1) + promedio), Constantes.AJUSTE);
+            = new MensajeBerkeley((int) ((next.getTimestamp() * -1) + promedio), Constantes.AJUSTE);
          DatagramPacket p = new DatagramPacket(mb.toByteArrray(), mb.toByteArrray().length);
          p.setAddress(next.getAddress());
          p.setPort(next.getPort());
