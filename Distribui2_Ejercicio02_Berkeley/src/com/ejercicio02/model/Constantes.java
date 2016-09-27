@@ -24,10 +24,10 @@ public interface Constantes {
    public static int TIEMPO_ESPERA_SOCKET = 500;
 //Tiempo espera para volver a ejecutar Berkeley. Al parecer está en funcion del 
 //total de nodos por sincronizar .
-   public static int TIEMPO_ESPERA_SINCRONIZACION = 10000;
+   public static int TIEMPO_ESPERA_SINCRONIZACION = 7000;
 
    public static int DESFASE_MAXIMO = 86408990; // 23:59:59:9990 en ms para 00:00:00:0000
-   public static int TIEMPO_DESFASE_MAXIMO = 60000; // 1Min.
+   public static int TIEMPO_DESFASE_MAXIMO = 5400000; // 1Min.
    // DESFASE_MAXIMO equivale a 1 minuto de ciclo.
 
 }

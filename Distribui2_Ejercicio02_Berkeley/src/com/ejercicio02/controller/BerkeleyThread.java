@@ -214,7 +214,7 @@ public class BerkeleyThread extends Thread {
    public void ajustar_clock(int ms) {
       if (ms >= 0) {
          nodo.setMSClockValue(nodo.getMSClockValue() + ms);
-      } else {
+      } else if (!nodo.isMaster()) {
          nodo.setClockPulseValue(ms);
       }
    }
@@ -227,7 +227,7 @@ public class BerkeleyThread extends Thread {
       for (Iterator<Nodo> iterator = nodos.iterator(); iterator.hasNext();) {
          Nodo next = iterator.next();
          MensajeBerkeley mb
-            = new MensajeBerkeley((int) ((next.getTimestamp() * -1) + promedio), Constantes.AJUSTE);
+                 = new MensajeBerkeley((int) ((next.getTimestamp() * -1) + promedio), Constantes.AJUSTE);
          DatagramPacket p = new DatagramPacket(mb.toByteArrray(), mb.toByteArrray().length);
          p.setAddress(next.getAddress());
          p.setPort(next.getPort());
