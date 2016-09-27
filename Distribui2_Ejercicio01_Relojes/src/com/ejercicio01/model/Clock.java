@@ -102,7 +102,8 @@ public class Clock implements Serializable {
       return String.format("%02d", _hh) + ":"
               + String.format("%02d", _mm) + ":"
               + String.format("%02d", _ss)//;
-       + ":" + String.format("%03d", _ms);
+              + ":" + String.format("%03d", _ms)
+              + " - " + String.format("%5.6f", ciclo);
    }
 
    @Override
