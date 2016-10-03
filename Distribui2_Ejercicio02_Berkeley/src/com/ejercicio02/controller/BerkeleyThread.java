@@ -58,6 +58,7 @@ public class BerkeleyThread extends Thread {
          this.sleep(Constantes.TIEMPO_ESPERA_SINCRONIZACION);
          System.out.println("\n");
          // Enviar SolicitudDeRelojes a esclavos MC.
+         System.out.println("[" + this.getName() + "] Enviando solicitud de desfases a grupo");
          nodo.enviarGrupo(solicitudDesfase());
 
          // Recibe relojes de cada nodo en la lista nodos.(Sumando los valores del mensaje)
@@ -67,7 +68,7 @@ public class BerkeleyThread extends Thread {
          // Obtiene el promedio de los valores recibidos
          promedio = (double) sumatoriaDeRelojes / (double) relojesSumados;
          System.out.println(
-                 "Sumatoria : " + sumatoriaDeRelojes
+                 "[" + this.getName() + "] Sumatoria : " + sumatoriaDeRelojes
                  + " nRelojes:" + relojesSumados
                  + " Promedio:" + promedio);
 
@@ -212,6 +213,7 @@ public class BerkeleyThread extends Thread {
     * @param ms Milisegundos de ajuste.
     */
    public void ajustar_clock(int ms) {
+      System.out.println("[" + this.getName() + "] Ajustando reloj en " + ms + " ms");
       if (ms >= 0) {
          nodo.setMSClockValue(nodo.getMSClockValue() + ms);
       } else if (!nodo.isMaster()) {

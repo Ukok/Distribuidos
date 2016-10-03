@@ -67,6 +67,40 @@ public class NodoController implements Constantes {
       nodos = new ArrayList<>();
 
    }
+   /**
+    * Constructor.
+    *
+    * @param reloj Clock.
+    */
+   public NodoController(Clock reloj) {
+
+      try {
+         mcs = new MulticastSocket(PUERTO_MULTICAST);
+      } catch (IOException ex) {
+         Logger.getLogger(NodoController.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      try {
+         ds = new DatagramSocket();
+      } catch (SocketException ex) {
+         Logger.getLogger(NodoController.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      try {
+         gpo = InetAddress.getByName(DIRECCION_DE_GRUPO);
+      } catch (UnknownHostException u) {
+         System.err.println("Direccion no valida");
+      }
+      try {
+         mcs.joinGroup(gpo);
+         System.out.println("Unido a grupo:" + gpo);
+      } catch (IOException ex) {
+         Logger.getLogger(NodoController.class.getName()).log(Level.SEVERE, null, ex);
+      }
+
+      masterFlag = ESCLAVO;
+      this.reloj = reloj;
+      nodos = new ArrayList<>();
+
+   }
 
    /**
     * Establece el id de BerkeleyThread
