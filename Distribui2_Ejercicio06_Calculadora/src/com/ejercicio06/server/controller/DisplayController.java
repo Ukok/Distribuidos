@@ -10,6 +10,7 @@ import java.net.SocketException;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -131,7 +132,9 @@ public class DisplayController extends Thread implements Constantes {
             System.out.println("Evaluado operacion: " + operation);
             operaciones = "" + String.valueOf(operation);
         } catch (ScriptException e) {
-            e.printStackTrace();
+            System.err.println("Error de sintaxis: "+ e.getLocalizedMessage());
+            operaciones = "";
+            JOptionPane.showMessageDialog(null, "Error de sintaxis", "Error!", JOptionPane.ERROR_MESSAGE);
         }
     
     }
