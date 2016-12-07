@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 
 /**
  *
@@ -117,11 +120,20 @@ public class DisplayController extends Thread implements Constantes {
     }
     
     private void resultado(){
-        operaciones = "";
-        
+        System.out.println("Calculando....");
     // AQUI REALIZA OPERACIONES
         
-        //Muestra el resultado en "operaciones"
+        ScriptEngineManager manager = new ScriptEngineManager();
+        ScriptEngine engine = manager.getEngineByName("js");
+
+        try {
+            Object operation = engine.eval(operaciones);
+            System.out.println("Evaluado operacion: " + operation);
+            operaciones = "" + String.valueOf(operation);
+        } catch (ScriptException e) {
+            e.printStackTrace();
+        }
+    
     }
 
 }
